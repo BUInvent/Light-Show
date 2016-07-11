@@ -75,7 +75,6 @@ void loop() {
   wait(2730);
 
   DoubleSpeedFlash(stage, duel);
-  //wait(10);
 
   preBullets2(bulletsPower);
 
@@ -100,7 +99,7 @@ void loop() {
   chorus(green, purple, orange);
   chorus(green, yellow, purple);
   chorus(green, purple, orange);
-  //wait(35);
+
   intimidate_half_sd(stage, duel);
   wait(710);
   intimidate_half_sdb2(bulletsPower, stage, duel);
