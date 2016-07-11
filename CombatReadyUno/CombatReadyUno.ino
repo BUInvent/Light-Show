@@ -26,38 +26,38 @@ void loop() {
     char letter = Serial.read();
     if (letter == '2') {
       
-      wait(2650);
+      wait(2600);
       steam(fire, 1);
-      wait(3855);
+      wait(3805);
       steam(fire, 1);
       wait(3860);
       steam(fire, 1);
 
-      wait(5200);
+      wait(5250);
       steam(fire, .75);
 
-      wait(1210);
-      musicnotes(fire, 424);
-      musicnotes(fire, 424);
-      musicnotes(fire, 424);
-      musicnotes(fire, 444);
+      wait(1100);
+      musicnotes(fire, 400);
+      musicnotes(fire, 400);
+      musicnotes(fire, 400);
+      musicnotes(fire, 400);
 
       intimidate(fire);
       wait(3330);
       intimidate(fire);
-      wait(3330);
+      wait(3370);
       intimidate(fire);
-      wait(740);
+      wait(760);
       
       intimidate_rev(fire);
       wait(700);
       
       intimidate_half(fire);
-      wait(6220);
+      wait(6180);
 
-      musicnotes(fire, 424);
-      musicnotes(fire, 424);
-      musicnotes(fire, 424);
+      musicnotes(fire, 400);
+      musicnotes(fire, 400);
+      musicnotes(fire, 400);
       musicnotes(fire, 200);
 
       wait(35);
