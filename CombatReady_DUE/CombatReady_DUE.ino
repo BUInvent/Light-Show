@@ -66,19 +66,19 @@ void loop() {
   DoubleFlashFinal(stage, duel);
   wait(3);
 
-  wait(2010);
+  wait(1990);
 
   bulletshot2(bulletsPower, bulletsGround);
 
   Serial.println('2');  //send signal to other arduino to do the steam lights
   DoubleSpeedFlash(stage, duel);
-  wait(2730);
+  wait(2700);
 
   DoubleSpeedFlash(stage, duel);
 
   preBullets2(bulletsPower);
 
-  wait(1180);
+  wait(1185);
   bulletshot2(bulletsPower, bulletsGround);
 
   chorus(green, yellow, purple);
@@ -86,22 +86,23 @@ void loop() {
   chorus(green, yellow, purple);
   chorus(green, purple, orange);
 
-  wait(10635);
+  wait(10640);
   intimidate2(bulletsPower, green, yellow, purple, orange, stage, duel);
   wait(700);
   intimidate_rev2(bulletsPower, green, yellow, purple, orange, stage, duel);
   wait(755);
   intimidate_half2(bulletsPower, green, yellow, purple, orange, stage, duel);
-  wait(2980);
+  wait(2960);
   FlashBuild(stage, duel);
   bulletshot2(bulletsPower, bulletsGround);
+  wait(20);
   chorus(green, yellow, purple);
   chorus(green, purple, orange);
   chorus(green, yellow, purple);
   chorus(green, purple, orange);
 
   intimidate_half_sd(stage, duel);
-  wait(710);
+  wait(690);
   intimidate_half_sdb2(bulletsPower, stage, duel);
   wait(740);
   intimidate_half2(bulletsPower, green, yellow, purple, orange, stage, duel);

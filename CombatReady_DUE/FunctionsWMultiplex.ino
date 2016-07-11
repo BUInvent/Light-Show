@@ -144,7 +144,7 @@ void bulletshot2(int bulletsPower[4], int bulletsGround[16]) {
       digitalWrite(bulletsGround[j], LOW);
     }
     digitalWrite(bulletsPower[i], LOW);
-    wait(44);
+    wait(49);
   }
 
   //set all bulletsground pins high

@@ -47,26 +47,26 @@ void loop() {
       intimidate(fire);
       wait(3370);
       intimidate(fire);
-      wait(760);
+      wait(720);
       
       intimidate_rev(fire);
-      wait(700);
+      wait(740);
       
       intimidate_half(fire);
-      wait(6180);
+      wait(6140);
 
       musicnotes(fire, 400);
       musicnotes(fire, 400);
       musicnotes(fire, 400);
-      musicnotes(fire, 200);
+      musicnotes(fire, 230);
 
-      wait(35);
+      wait(50);
       intimidate_half(fire);
-      wait(740);
+      wait(710);
       intimidate_half(fire);
-      wait(740);
+      wait(733);
       intimidate_half(fire);
-      wait(740);
+      wait(745);
       INTIMIDATE_FINAL(fire);
     }
   }
