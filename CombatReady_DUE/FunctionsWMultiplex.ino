@@ -650,4 +650,11 @@ static void Play_Music( void )
   Serial.write( Music_Message, sizeof(Music_Message) );
 }
 
+static void Stop_Music( void )
+{
+  static const uint8_t Music_Message[] = { 0x7E, 0xFF, 0x06, 0x0C, 0x00, 0x00, 0x01, 0xEF };
+  Serial.write( Music_Message, sizeof(Music_Message) );
+}
+
+
 

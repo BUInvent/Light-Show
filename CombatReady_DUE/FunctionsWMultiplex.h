@@ -20,3 +20,4 @@ void intimidate_half_sdb(int, int, int);
 void intimidate_half_sdb2(int[4], int, int);
 void INTIMIDATE_FINAL2(int bulletsPower[4], int, int, int, int, int, int);
 static void Play_Music( void );
+static void Stop_Music( void );
