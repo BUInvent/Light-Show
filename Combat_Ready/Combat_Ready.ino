@@ -3,8 +3,8 @@
   by Jason Morris
 */
 
-#include "lightnumbersWMultiplex.h"
-#include "FunctionsWMultiplex.h"
+#include "light_numbers.h"
+#include "Functions.h"
 
 
 void setup() {

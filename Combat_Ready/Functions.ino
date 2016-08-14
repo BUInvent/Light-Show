@@ -1,4 +1,4 @@
-#include "FunctionsWMultiplex.h"
+#include "Functions.h"
 
 //wait function instead of delay so that the entire show can easily be
 //slowed down or sped up. ex: change to delay(timenum*2) to go twice as slow
