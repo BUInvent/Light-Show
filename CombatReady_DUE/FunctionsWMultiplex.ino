@@ -1,5 +1,4 @@
 #include "FunctionsWMultiplex.h"
-//#define ARRAY_SIZE( array ) sizeof( array ) / sizeof( array[0] )
 
 //wait function instead of delay so that the entire show can easily be
 //slowed down or sped up. ex: change to delay(timenum*2) to go twice as slow
@@ -9,7 +8,7 @@ void wait(int timenum) {
 
 
 
-
+//set all the analog pin numbers passed in to the desired brightness
 void AnWriteLights(int lights[], int brightness) {
   for (int i = 0; lights[i] != -1; i++) {
     analogWrite(lights[i], brightness);
@@ -17,12 +16,14 @@ void AnWriteLights(int lights[], int brightness) {
 }
 
 
+//set all the digital pin numbers passed in to high
 void DigiHigh(int lights[]) {
   for (int i = 0; lights[i] != -1; i++) {
     digitalWrite(lights[i], HIGH);
   }
 }
 
+//set all the digital pin numbers passed in to low
 void DigiLow(int lights[]) {
   for (int i = 0; lights[i] != -1; i++) {
     digitalWrite(lights[i], LOW);
@@ -30,6 +31,7 @@ void DigiLow(int lights[]) {
 }
 
 
+//initialize all the pin modes to either digital or analog and set to be off
 void initializePinModes(int lights[], char type[]) {
   for (int i = 0; lights[i] != -1; i++) {
     pinMode(lights[i], OUTPUT);
@@ -38,9 +40,8 @@ void initializePinModes(int lights[], char type[]) {
     DigiLow(lights);
   }
   else
-  AnWriteLights(lights, 0);
+    AnWriteLights(lights, 0);
 }
-
 
 
 
@@ -77,7 +78,7 @@ void DoubleFlash(int LightOne[], int LightTwo[], int Speed) {
   AnWriteLights(LightTwo, 255);
 
   do {
-    // set the brightness of pin 9:
+    // set the brightness of LightOne:
     AnWriteLights(LightOne, brightness);
 
     if (fadeCount == 1) {
@@ -131,14 +132,13 @@ void DoubleFlashFinal(int LightOne[], int LightTwo[]) {
 
 
 //bulletshot multiplex function
-void bulletshot2(int bulletsPower[4], int bulletsGround[16]) {
+void bulletshot(int bulletsPower[], int bulletsGround[]) {
 
   //set all bulletsground pins low
   DigiLow(bulletsGround);
-
-  for (int i = 0; i < 4; i++) {
+  for (int i = 0; bulletsPower[i] != -1; i++) {
     digitalWrite(bulletsPower[i], HIGH);
-    for (int j = 0; j < 16; j++) {
+    for (int j = 0; bulletsGround[j] != -1; j++) {
       digitalWrite(bulletsGround[j], HIGH);
       wait(7);
       digitalWrite(bulletsGround[j], LOW);
@@ -197,9 +197,9 @@ void FlashBuild(int LightOne[], int LightTwo[]) {
 
 
 
-//preBullets My idea
-void preBullets2(int bulletsPower[4]) {
-  for (int i = 0; i < 3; i++) {
+//preBullets
+void preBullets(int bulletsPower[]) {
+  for (int i = 0; bulletsPower[i] != -1; i++) {
     digitalWrite(bulletsPower[i], HIGH);
     wait(162);
   }
@@ -213,7 +213,7 @@ void preBullets2(int bulletsPower[4]) {
 
 
 
-//chorus part (for rygb lights)
+//chorus part (for orange, green, yellow, purple lights)
 void chorus(int Light1[], int Light2[], int Light3[]) {
   DigiHigh(Light1);
   wait(2603);
@@ -232,8 +232,8 @@ void chorus(int Light1[], int Light2[], int Light3[]) {
 
 
 
-//intimidate my idea
-void intimidate2(int bulletsPower[4], int green[], int yellow[], int purple[], int orange[], int stage[], int duel[]) {
+//intimidate
+void intimidate(int bulletsPower[4], int green[], int yellow[], int purple[], int orange[], int stage[], int duel[]) {
 
   digitalWrite(bulletsPower[0], HIGH);
 
@@ -310,8 +310,8 @@ void intimidate2(int bulletsPower[4], int green[], int yellow[], int purple[], i
 
 
 
-//reverse intimidate my idea
-void intimidate_rev2(int bulletsPower[4], int green[], int yellow[], int purple[], int orange[], int stage[], int duel[]) {
+//reverse intimidate
+void intimidate_rev(int bulletsPower[4], int green[], int yellow[], int purple[], int orange[], int stage[], int duel[]) {
 
   digitalWrite(bulletsPower[3], HIGH);
   DigiHigh(orange);
@@ -383,8 +383,8 @@ void intimidate_rev2(int bulletsPower[4], int green[], int yellow[], int purple[
 
 
 
-//half intimidate function my idea
-void intimidate_half2(int bulletsPower[4], int green[], int yellow[], int purple[], int orange[], int stage[], int duel[]) {
+//half intimidate function
+void intimidate_half(int bulletsPower[4], int green[], int yellow[], int purple[], int orange[], int stage[], int duel[]) {
   digitalWrite(bulletsPower[1], HIGH);
   digitalWrite(bulletsPower[0], HIGH);
 
@@ -494,8 +494,8 @@ void intimidate_half_sd(int stage[], int duel[]) {
 
 
 
-//intimidate half with stage, duel, and bullet lights my idea
-void intimidate_half_sdb2(int bulletsPower[4], int stage[], int duel[]) {
+//intimidate half with stage, duel, and bullet lights
+void intimidate_half_sdb(int bulletsPower[4], int stage[], int duel[]) {
   digitalWrite(bulletsPower[1], HIGH);
   digitalWrite(bulletsPower[0], HIGH);
   AnWriteLights(stage, 255);
@@ -550,8 +550,8 @@ void intimidate_half_sdb2(int bulletsPower[4], int stage[], int duel[]) {
 
 
 //final intimidate on all leds
-void INTIMIDATE_FINAL2(int bulletsPower[4], int green[], int yellow[], int purple[], int orange[], int stage[], int duel[]) {
-  
+void INTIMIDATE_FINAL(int bulletsPower[4], int green[], int yellow[], int purple[], int orange[], int stage[], int duel[]) {
+
   DigiHigh(bulletsPower);
   DigiHigh(green);
   DigiHigh(yellow);
@@ -560,7 +560,7 @@ void INTIMIDATE_FINAL2(int bulletsPower[4], int green[], int yellow[], int purpl
   AnWriteLights(stage, 255);
   AnWriteLights(duel, 255);
   wait(95);
-  
+
   DigiLow(bulletsPower);
   DigiLow(green);
   DigiLow(yellow);
@@ -569,7 +569,7 @@ void INTIMIDATE_FINAL2(int bulletsPower[4], int green[], int yellow[], int purpl
   AnWriteLights(stage, 0);
   AnWriteLights(duel, 0);
   wait(80);
-  
+
   DigiHigh(bulletsPower);
   DigiHigh(green);
   DigiHigh(yellow);
@@ -578,7 +578,7 @@ void INTIMIDATE_FINAL2(int bulletsPower[4], int green[], int yellow[], int purpl
   AnWriteLights(stage, 255);
   AnWriteLights(duel, 255);
   wait(270);
-  
+
   DigiLow(bulletsPower);
   DigiLow(green);
   DigiLow(yellow);
@@ -587,7 +587,7 @@ void INTIMIDATE_FINAL2(int bulletsPower[4], int green[], int yellow[], int purpl
   AnWriteLights(stage, 0);
   AnWriteLights(duel, 0);
   wait(80);
-  
+
   DigiHigh(bulletsPower);
   DigiHigh(green);
   DigiHigh(yellow);
@@ -596,7 +596,7 @@ void INTIMIDATE_FINAL2(int bulletsPower[4], int green[], int yellow[], int purpl
   AnWriteLights(stage, 255);
   AnWriteLights(duel, 255);
   wait(125);
-  
+
   DigiLow(bulletsPower);
   DigiLow(green);
   DigiLow(yellow);
@@ -605,7 +605,7 @@ void INTIMIDATE_FINAL2(int bulletsPower[4], int green[], int yellow[], int purpl
   AnWriteLights(stage, 0);
   AnWriteLights(duel, 0);
   wait(325);
-  
+
   DigiHigh(bulletsPower);
   DigiHigh(green);
   DigiHigh(yellow);
@@ -614,7 +614,7 @@ void INTIMIDATE_FINAL2(int bulletsPower[4], int green[], int yellow[], int purpl
   AnWriteLights(stage, 255);
   AnWriteLights(duel, 255);
   wait(95);
-  
+
   DigiLow(bulletsPower);
   DigiLow(green);
   DigiLow(yellow);
@@ -623,7 +623,7 @@ void INTIMIDATE_FINAL2(int bulletsPower[4], int green[], int yellow[], int purpl
   AnWriteLights(stage, 0);
   AnWriteLights(duel, 0);
   wait(80);
-  
+
   DigiHigh(bulletsPower);
   DigiHigh(green);
   DigiHigh(yellow);
@@ -632,7 +632,7 @@ void INTIMIDATE_FINAL2(int bulletsPower[4], int green[], int yellow[], int purpl
   AnWriteLights(stage, 255);
   AnWriteLights(duel, 255);
   wait(850);
-  
+
   DigiLow(bulletsPower);
   DigiLow(green);
   DigiLow(yellow);
@@ -655,6 +655,4 @@ static void Stop_Music( void )
   static const uint8_t Music_Message[] = { 0x7E, 0xFF, 0x06, 0x0C, 0x00, 0x00, 0x01, 0xEF };
   Serial.write( Music_Message, sizeof(Music_Message) );
 }
-
-
 

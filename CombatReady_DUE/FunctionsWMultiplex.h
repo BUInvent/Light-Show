@@ -1,3 +1,4 @@
+//function declarations
 void initializePinModes(int[], char[]);
 void wait(int);
 void AnWriteLights(int[], int);

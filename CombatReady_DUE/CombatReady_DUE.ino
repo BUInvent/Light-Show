@@ -9,11 +9,13 @@
 
 void setup() {
 
+  //number the bulletsGround pins
   bulletsGround[16] = -1;
-  for (int i = 0; i < 16; i++){
-    bulletsGround[i] = (i*2)+22;
+  for (int i = 0; i < 16; i++) {
+    bulletsGround[i] = (i * 2) + 22;
   }
-  
+
+  //initialize all pin modes
   pinMode(button, INPUT);
   initializePinModes(stage, "analog");
   initializePinModes(duel, "analog");
@@ -46,29 +48,31 @@ void loop() {
   DoubleFlash(stage, duel, 2);
   wait(3);
 
+  //stage flash 7 times
   for (int i = 0; i < 7; i++) {
     SingleFlash(stage);
     wait(3);
   }
 
+  //double flash at slower speed twice
+  DoubleFlash(stage, duel, 2);
+  wait(3);
   DoubleFlash(stage, duel, 2);
   wait(3);
 
-  DoubleFlash(stage, duel, 2);
+  //double flash at faster speed twice
+  DoubleFlash(stage, duel, 1);
   wait(3);
-
   DoubleFlash(stage, duel, 1);
   wait(3);
 
-  DoubleFlash(stage, duel, 1);
-  wait(3);
-
+  //final flash before show gets crazy
   DoubleFlashFinal(stage, duel);
   wait(3);
 
+  //the suspense
   wait(1990);
-
-  bulletshot2(bulletsPower, bulletsGround);
+  bulletshot(bulletsPower, bulletsGround); //bullets!
 
   Serial.println('2');  //send signal to other arduino to do the steam lights
   DoubleSpeedFlash(stage, duel);
@@ -76,37 +80,43 @@ void loop() {
 
   DoubleSpeedFlash(stage, duel);
 
-  preBullets2(bulletsPower);
+  preBullets(bulletsPower);
 
   wait(1185);
-  bulletshot2(bulletsPower, bulletsGround);
+  bulletshot(bulletsPower, bulletsGround);
 
+  //chorus
   chorus(green, yellow, purple);
   chorus(green, purple, orange);
   chorus(green, yellow, purple);
   chorus(green, purple, orange);
 
+  //intimidate audience
   wait(10640);
-  intimidate2(bulletsPower, green, yellow, purple, orange, stage, duel);
+  intimidate(bulletsPower, green, yellow, purple, orange, stage, duel);
   wait(700);
-  intimidate_rev2(bulletsPower, green, yellow, purple, orange, stage, duel);
+  intimidate_rev(bulletsPower, green, yellow, purple, orange, stage, duel);
   wait(755);
-  intimidate_half2(bulletsPower, green, yellow, purple, orange, stage, duel);
+  intimidate_half(bulletsPower, green, yellow, purple, orange, stage, duel);
   wait(2960);
-  FlashBuild(stage, duel);
-  bulletshot2(bulletsPower, bulletsGround);
+
+  FlashBuild(stage, duel); //add suspense before bulletshot
+  bulletshot(bulletsPower, bulletsGround);
   wait(20);
+
+  //chorus
   chorus(green, yellow, purple);
   chorus(green, purple, orange);
   chorus(green, yellow, purple);
   chorus(green, purple, orange);
 
+  //  finish the song
   intimidate_half_sd(stage, duel);
   wait(690);
-  intimidate_half_sdb2(bulletsPower, stage, duel);
+  intimidate_half_sdb(bulletsPower, stage, duel);
   wait(740);
-  intimidate_half2(bulletsPower, green, yellow, purple, orange, stage, duel);
+  intimidate_half(bulletsPower, green, yellow, purple, orange, stage, duel);
   wait(740);
-  INTIMIDATE_FINAL2(bulletsPower, green, yellow, purple, orange, stage, duel);
+  INTIMIDATE_FINAL(bulletsPower, green, yellow, purple, orange, stage, duel);
 
 }

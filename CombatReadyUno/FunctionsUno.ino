@@ -255,4 +255,3 @@ void INTIMIDATE_FINAL(int fire[6]) {
     digitalWrite(fire[i], LOW);
   }
 }
-
